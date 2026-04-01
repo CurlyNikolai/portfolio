@@ -1,0 +1,279 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { BASE_PATH } from '../config';
+
+// In production you'd use Astro.glob or getCollection — this keeps it simple for now
+const projects = [
+  {
+    slug: 'curly-engine',
+    title: 'CurlyEngine',
+    description: 'Engine for testing and visualizing various physics/graphics programming techniques and algorithms.',
+    domain: 'games',
+    tag: 'accent2',
+    tags: ["C++", "GoogleTest", "OpenGL/WebGL", "GLSL", "ImGui", "Docker", "GLFW", "{fmt}", "CMake", "emscripten"]
+  },
+  {
+    slug: 'nc-inspect',
+    title: "nc-inspect",
+    description: "Utility for inspecting the contents of NetCDF files.",
+    domain: 'space',
+    tag: 'accent3',
+    tags: ["C++", "NetCDF", "OpenGL", "ImGui", "ImPlot", "Docker", "GLFW", "{fmt}", "CMake"],
+  },
+  {
+    slug: 'forum-fees-l1',
+    title: "FORUM E2E simulator and L1 processing software",
+    description: "End-to-end simulator and L1 data processing software for the FORUM satellite mission.",
+    domain: 'space',
+    tag: 'accent3',
+    tags: ["Ground processing", "Satellite data processing", "E2E simulation"],
+  },
+  {
+    slug: 'heroic-city',
+    title: 'Heroic City (Steam)',
+    description: 'Multiplayer platform enabling players to do good in the real world.',
+    domain: 'games',
+    tag: 'accent2',
+    tags: ['C#', 'Unity', 'Steamworks SDK', 'Photon Quantum', 'Xsolla'],
+  },
+  {
+    slug: 'radiation-damage-in-heas',
+    title: 'Radiation Damage in High Entropy Alloys - PhD Research',
+    description: 'Doctoral research of radiation damage in High Entropy Alloys in the context of materials for nuclear reactor components.',
+    domain: 'physics',
+    tag: 'accent',
+    tags: ["Molecular Dynamics", "Numerical Methods", "Python", "Linux"],
+  },
+  {
+    slug: 'they-are-you',
+    title: 'They Are You',
+    description: 'Top down puzzle/adventure game where you become who you kill.',
+    domain: 'games',
+    tag: 'accent2',
+    tags: ['C#', 'Unity'],
+  },
+  {
+    slug: 'hexwars',
+    title: 'HexWars',
+    description: 'Fast paced top-down shooter prototype.',
+    domain: 'games',
+    tag: 'accent2',
+    tags: ['C#', 'Unity', 'WebGL'],
+  },
+];
+
+const skills = [
+  {
+    category: 'Physics',
+    class: 'accent1',
+    domain: 'physics',
+    tag: 'accent1',
+    items: ['Fortran', 'Python', 'Molecular dynamics', 'Numerical methods (Verlet, RK, Gear)', 'High performance computing', 'Monte Carlo'],
+  },
+  {
+    category: 'Game Development',
+    class: 'accent2',
+    domain: 'games',
+    tag: 'accent2',
+    items: ['C#', 'Unity', 'OpenGL/WebGL', 'GLFW', 'Photon Quantum', 'Steamworks SDK', 'Unity3d PlayFab SDK'],
+  },
+  {
+    category: 'Space',
+    class: 'accent3',
+    domain: 'space',
+    tag: 'accent3',
+    items: ['C++', 'Python', 'Satellite data processing', 'Ground processing', "E2E simulation", 'NetCDF'],
+  },
+  {
+    category: 'General Engineering',
+    class: 'text',
+    domain: 'general',
+    tag: 'general',
+    items: ['Git', 'CI/CD', 'Docker', 'CMake', 'Linux'],
+  },
+];
+
+const domainLabel: Record<string, string> = {
+  space: 'Space',
+  physics: 'Physics',
+  games: 'Game Development',
+  general: "General"
+};
+---
+
+<BaseLayout>
+
+  <!-- ═══════════════════════════════ HERO ═══════════════════════════════ -->
+  <section class="hero">
+    <div class="container hero-inner">
+      <div class="hero-content">
+        <span class="hero-eyebrow fade-up">Software Engineer<br/>Computational Physicist</span>
+        <h1 class="hero-title fade-up fade-up-delay-1">
+          <span class="accent1">Physics</span><br/>
+          <span class="accent2">Games</span><br/>
+          <span class="accent3">Space</span>
+        </h1>
+        <p class="hero-sub fade-up fade-up-delay-2">
+          I'm a software engineer with a background in computational physics and experience in the game and space industries. 
+          I get my biggest kicks in work from solving hard problems.
+        </p>
+        <div class="hero-actions fade-up fade-up-delay-3">
+          <a href=`${BASE_PATH}/#projects` class="btn btn-primary">View Projects</a>
+          <a href=`${BASE_PATH}/#contact` class="btn btn-ghost">Get in Touch</a>
+        </div>
+      </div>
+      <div class="hero-visual fade-up fade-up-delay-4">
+        <div class="orbit-visual">
+          <div class="orbit orbit-1"><div class="dot dot-1"></div></div>
+          <div class="orbit orbit-2"><div class="dot dot-2"></div></div>
+          <div class="orbit orbit-3"><div class="dot dot-3"></div></div>
+          <div class="planet"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════ ABOUT ═══════════════════════════════ -->
+  <section class="section" id="about">
+    <div class="container">
+      <span class="section-label">01 — About</span>
+      <h2 class="section-title">Software Engineer<br>Computational Physicist</h2>
+      <div class="divider"></div>
+      <div class="about-grid">
+        <div class="about-text">
+          <p>
+            I'm a thirty-something year old computational physicist turned programmer, living in
+            Helsinki, Finland.
+          </p>
+          <p>
+            My programming days started when working as a computational physicist researching nuclear reactor
+            materials.
+            After that I worked as a game programmer before finding my current role as a
+            software engineer in the space industry.
+          </p>
+          <p>
+            My main areas of interest include programming, physics and game development but as long as I get to solve problems, I'm right at home.
+          </p>
+        </div>
+        <div class="about-stats">
+          <div class="stat-card">
+            <span class="stat-number">PhD</span>
+            <span class="stat-label">Computational Materials Physics</span>
+          </div>
+          <div class="stat-card accent2">
+            <span class="stat-number">1 - 5+</span>
+            <span class="stat-label">Games shipped - developed</span>
+          </div>
+          <div class="stat-card accent3">
+            <span class="stat-number">2+</span>
+            <span class="stat-label">Years in space sector</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════ SKILLS ═══════════════════════════════ -->
+  <section class="section" id="skills">
+    <div class="container">
+      <span class="section-label">02 — Skills</span>
+      <h2 class="section-title">What I work with.</h2>
+      <div class="divider"></div>
+      <div class="skills-grid">
+        {skills.map(group => (
+          <div class="skill-group card">
+            <div class="project-card-header">
+              <span class={`tag ${group.tag}`}>
+                {domainLabel[group.domain]}
+              </span>
+            </div>
+            <br/>
+            <ul class="skill-list">
+              {group.items.map(item => (
+                <li class="skill-item">
+                  <span class="skill-bullet">▸</span>
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════ PROJECTS ═══════════════════════════════ -->
+  <section class="section" id="projects">
+    <div class="container">
+      <span class="section-label">03 — Projects</span>
+      <h2 class="section-title">What I've worked on.</h2>
+      <div class="divider"></div>
+      
+      <!-- Project Filters -->
+      <div class="projects-filters">
+        <button class="filter-btn filter-btn-active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="games">Game Development</button>
+        <button class="filter-btn" data-filter="space">Space</button>
+        <button class="filter-btn" data-filter="physics">Physics</button>
+      </div>
+
+      <div class="projects-grid">
+        {projects.map((project, i) => (
+          <a href={`/portfolio/projects/${project.slug}`} class="project-card card" data-domain={project.domain}>
+            <div class="project-card-header">
+              <span class={`tag ${project.tag}`}>
+                {domainLabel[project.domain]}
+              </span>
+              <span class="project-arrow">↗</span>
+            </div>
+            <h3 class="project-card-title">{project.title}</h3>
+            <p class="project-card-desc">{project.description}</p>
+            <div class="project-card-tags">
+              {project.tags.map(tag => (
+                <span class="tag">{tag}</span>
+              ))}
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <script>
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const projectCards = document.querySelectorAll('.project-card');
+
+    filterButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        // Update active button
+        filterButtons.forEach(btn => btn.classList.remove('filter-btn-active'));
+        button.classList.add('filter-btn-active');
+
+        // Filter projects
+        const selectedFilter = button.getAttribute('data-filter');
+        projectCards.forEach(card => {
+          if (selectedFilter === 'all' || card.getAttribute('data-domain') === selectedFilter) {
+            card.classList.remove('project-card-hidden');
+          } else {
+            card.classList.add('project-card-hidden');
+          }
+        });
+      });
+    });
+  </script>
+
+  <!-- ═══════════════════════════════ CONTACT ═══════════════════════════════ -->
+  <section class="section" id="contact">
+    <div class="container contact-inner">
+      <span class="section-label">04 — Contact</span>
+      <h2 class="section-title">Let's connect.</h2>
+      <div class="divider"></div>
+      <div class="contact-actions">
+        <a href="mailto:emil.levo@outlook.com" class="btn btn-primary">Send Email ↗</a>
+        <a href="https://www.linkedin.com/in/emil-levo/" class="btn btn-ghost" target="_blank">LinkedIn ↗</a>
+        <a href="/portfolio/CV.pdf" class="btn btn-ghost" target="_blank">Download CV ↓</a>
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>

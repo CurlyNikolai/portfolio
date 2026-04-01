@@ -1,0 +1,97 @@
+---
+import '../styles/global.css';
+import { BASE_PATH } from '../config';
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const { title = 'Emil Levo — Physics · Game Dev · Space', description = 'Software engineer working at the intersection of physics, game development, and satellite data systems.' } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content={description} />
+  <title>{title}</title>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+</head>
+<body>
+
+  <nav class="nav">
+    <div class="container nav-inner">
+      <div class="nav-left">
+        <a href={BASE_PATH} class="nav-logo">Emil Levo<span></span></a>
+        { !Astro.url.pathname.startsWith(`${BASE_PATH}/projects`) && <img id="profile-img" src={`${BASE_PATH}/prof_pic.jpg`} alt="CV Picture" style="border-radius: 50px; margin-top: 10px; opacity: 0;" /> }
+      </div>
+      <ul class="nav-links">
+        <li><a href={`${BASE_PATH}/#about`}>About</a></li>
+        <li><a href={`${BASE_PATH}/#skills`}>Skills</a></li>
+        <li><a href={`${BASE_PATH}/#projects`}>Projects</a></li>
+        <li><a href={`${BASE_PATH}/#contact`}>Contact</a></li>
+        <li><a href={`${BASE_PATH}/CV.pdf`} class="btn btn-primary" target="_blank">CV ↓</a></li>
+      </ul>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">☰</button>
+    </div>
+  </nav>
+
+  <main>
+    <slot />
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <span class="footer-copy">© 2026 Emil Levo. Built with Astro.</span>
+      <div class="footer-links">
+        <a href="https://github.com/CurlyNikolai" target="_blank">GitHub</a>
+        <a href="https://www.linkedin.com/in/emil-levo/" target="_blank">LinkedIn</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const nav = document.querySelector('.nav');
+    
+    // Function to update image opacity based on scroll position
+    function updateImageOpacity() {
+      const img = document.getElementById('profile-img');
+      if (img) {
+        const scrollY = window.scrollY;
+        const fadeStart = 50; // Start fading after 50px scroll
+        const fadeEnd = 100; // Fully faded at 200px scroll
+        let opacity = 1;
+        if (scrollY > fadeStart) {
+          opacity = Math.max(0, 1 - (scrollY - fadeStart) / (fadeEnd - fadeStart));
+        }
+        img.style.opacity = opacity;
+      }
+    }
+
+    // Function to update nav scrolled state
+    function updateNavScrollState() {
+      nav?.classList.toggle('scrolled', window.scrollY > 40);
+    }
+
+    // Run on page load to set initial state
+    updateImageOpacity();
+    updateNavScrollState();
+
+    window.addEventListener('scroll', () => {
+      // Nav scrolled effect
+      updateNavScrollState();
+      
+      // Image fade effect
+      updateImageOpacity();
+    });
+
+    // Hamburger menu toggle
+    const navToggle = document.getElementById('navToggle');
+    const navLinks = document.querySelector('.nav-links');
+    navToggle?.addEventListener('click', () => {
+      navLinks.classList.toggle('open');
+    });
+  </script>
+</body>
+</html>
